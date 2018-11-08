@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -46,46 +46,70 @@ class LoginForm extends Component {
   }
 
   render() {
+    const { loginMasterViewStyle, loginSubViewStyle, logoStyle, inputStyle } = styles;
+
     return (
-      <View>
-        <Card>
-          <CardSection>
-            <Input
-              label="Email"
-              placeholder="user@email.com"
-              onChangeText={this.onEmailChange.bind(this)}
-              value={this.props.email}
-            />
-          </CardSection>
+      <View style={loginMasterViewStyle}>
+        <View style={loginSubViewStyle}>
+          <Card>
+            <CardSection style={logoStyle}>
+              <Text>LOGO</Text>
+            </CardSection>
 
-          <CardSection>
-            <Input
-              secureTextEntry
-              label="Password"
-              placeholder="password"
-              onChangeText={this.onPasswordChange.bind(this)}
-              value={this.props.password}
-            />
-          </CardSection>
+            <CardSection>
+              <Input
+                label="Email"
+                placeholder="user@email.com"
+                onChangeText={this.onEmailChange.bind(this)}
+                value={this.props.email}
+              />
+            </CardSection>
 
-          {this.renderError()}
+            <CardSection>
+              <Input
+                secureTextEntry
+                label="Password"
+                placeholder="password"
+                onChangeText={this.onPasswordChange.bind(this)}
+                value={this.props.password}
+              />
+            </CardSection>
 
-          <CardSection>
-            {this.renderButton()}
-          </CardSection>
-        </Card>
+            {this.renderError()}
+
+            <CardSection style={inputStyle}>
+              {this.renderButton()}
+            </CardSection>
+          </Card>
+        </View>
       </View>
     );
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
+  loginMasterViewStyle: {
+    backgroundColor: 'red',
+    flex: 1,
+    display: 'flex',
+  },
+  loginSubViewStyle: {
+    backgroundColor: 'red',
+    flex: 0.8,
+    justifyContent: 'center',
+    display: 'flex',
+  },
+  logoStyle: {
+    alignSelf: 'center'
+  },
+  // inputStyle: {
+  // },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
     color: 'red'
  }
-};
+});
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;
