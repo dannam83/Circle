@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -44,17 +45,20 @@ class LoginForm extends Component {
       );
     }
   }
+  // <Card>
+  //   <CardSection style={logoStyle}>
+  //   </CardSection>
 
   render() {
-    const { loginMasterViewStyle, loginSubViewStyle, logoStyle, inputStyle } = styles;
+    const { linearGradientStyle, loginSubViewStyle, logoViewStyle, inputStyle } = styles;
 
     return (
-      <View style={loginMasterViewStyle}>
+      <LinearGradient colors={['#ff0000', '#ff5050', '#cc3399']} style={linearGradientStyle}>
         <View style={loginSubViewStyle}>
-          <Card>
-            <CardSection style={logoStyle}>
-              <Text>LOGO</Text>
-            </CardSection>
+
+            <View style={logoViewStyle}>
+              <Text>Circle</Text>
+            </View>
 
             <CardSection>
               <Input
@@ -80,27 +84,28 @@ class LoginForm extends Component {
             <CardSection style={inputStyle}>
               {this.renderButton()}
             </CardSection>
-          </Card>
         </View>
-      </View>
+      </LinearGradient>
     );
   }
 }
+// </Card>
 
 const styles = StyleSheet.create({
-  loginMasterViewStyle: {
-    backgroundColor: 'red',
+  linearGradientStyle: {
+    // backgroundColor: 'red',
     flex: 1,
     display: 'flex',
   },
   loginSubViewStyle: {
-    backgroundColor: 'red',
-    flex: 0.8,
+    // backgroundColor: 'red',
+    flex: 0.7,
     justifyContent: 'center',
     display: 'flex',
   },
-  logoStyle: {
-    alignSelf: 'center'
+  logoViewStyle: {
+    alignSelf: 'center',
+    paddingBottom: 100
   },
   // inputStyle: {
   // },
