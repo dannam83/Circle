@@ -68,22 +68,24 @@ class LoginForm extends Component {
               <Text style={logoTextStyle}>Circle</Text>
             </View>
 
-            <CardSection>
+            <LoginInputSection>
               <LoginInput
                 placeholder="Email"
+                placeholderTextColor="white"
                 onChangeText={this.onEmailChange.bind(this)}
                 value={this.props.email}
               />
-            </CardSection>
+            </LoginInputSection>
 
-            <CardSection>
+            <LoginInputSection>
               <LoginInput
                 secureTextEntry
                 placeholder="Password"
+                placeholderTextColor="white"
                 onChangeText={this.onPasswordChange.bind(this)}
                 value={this.props.password}
               />
-            </CardSection>
+            </LoginInputSection>
 
             {this.renderError()}
 
@@ -105,6 +107,7 @@ const styles = StyleSheet.create({
   containerViewStyle: {
     flex: 0.7,
     justifyContent: 'center',
+    alignItems: 'center',
     display: 'flex',
   },
   logoViewStyle: {

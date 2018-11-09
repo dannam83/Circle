@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const CardSection = (props) => {
+const LoginInputSection = (props) => {
   return (
     <View style={[styles.containerStyle, props.style]}>
       {props.children}
@@ -13,12 +13,15 @@ const styles = {
   containerStyle: {
     borderBottomWidth: 1,
     padding: 5,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     borderColor: '#ddd',
-    position: 'relative'
+    position: 'relative',
+    backgroundColor: 'black',
+    opacity: 0.35,
+    width: 350,
   }
 };
 
-export { CardSection };
+export { LoginInputSection };
