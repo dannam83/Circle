@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Card, CardSection, LoginInputSection, LoginInput, Button, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -52,33 +52,34 @@ class LoginForm extends Component {
   render() {
     const {
       linearGradientStyle,
-      loginSubViewStyle,
+      containerViewStyle,
       logoViewStyle,
       logoTextStyle,
       inputStyle } = styles;
 
     return (
-      <LinearGradient colors={['#ff0000', '#ff5050', '#cc3399']} style={linearGradientStyle}>
-        <View style={loginSubViewStyle}>
+      <LinearGradient
+        colors={['#ff0000', '#ff5050', '#cc3399']}
+        style={linearGradientStyle}
+      >
+        <View style={containerViewStyle}>
 
             <View style={logoViewStyle}>
               <Text style={logoTextStyle}>Circle</Text>
             </View>
 
             <CardSection>
-              <Input
-                label="Email"
-                placeholder="user@email.com"
+              <LoginInput
+                placeholder="Email"
                 onChangeText={this.onEmailChange.bind(this)}
                 value={this.props.email}
               />
             </CardSection>
 
             <CardSection>
-              <Input
+              <LoginInput
                 secureTextEntry
-                label="Password"
-                placeholder="password"
+                placeholder="Password"
                 onChangeText={this.onPasswordChange.bind(this)}
                 value={this.props.password}
               />
@@ -101,14 +102,14 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
   },
-  loginSubViewStyle: {
+  containerViewStyle: {
     flex: 0.7,
     justifyContent: 'center',
     display: 'flex',
   },
   logoViewStyle: {
     alignSelf: 'center',
-    paddingBottom: 90
+    paddingBottom: 85
   },
   logoTextStyle: {
     fontFamily: 'Pacifico-Regular',
