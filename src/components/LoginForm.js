@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, LoginInputSection, LoginInput, Button, Spinner } from './common';
+import { Card, CardSection, LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -28,9 +28,9 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
-      </Button>
+      <LoginButton onPress={this.onButtonPress.bind(this)}>
+        Sign In
+      </LoginButton>
     );
   }
 
@@ -55,7 +55,8 @@ class LoginForm extends Component {
       containerViewStyle,
       logoViewStyle,
       logoTextStyle,
-      inputStyle } = styles;
+      loginButtonSectionStyle
+     } = styles;
 
     return (
       <LinearGradient
@@ -89,9 +90,9 @@ class LoginForm extends Component {
 
             {this.renderError()}
 
-            <CardSection style={inputStyle}>
+            <LoginInputSection style={loginButtonSectionStyle}>
               {this.renderButton()}
-            </CardSection>
+            </LoginInputSection>
         </View>
       </LinearGradient>
     );
@@ -118,6 +119,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Pacifico-Regular',
     fontSize: 32,
     color: 'white'
+  },
+  loginButtonSectionStyle: {
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    opacity: 1.0,
+    borderBottomWidth: 0,
+    paddingTop: 20
   },
   // inputStyle: {
   // },

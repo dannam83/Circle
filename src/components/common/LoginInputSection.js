@@ -21,6 +21,8 @@ const styles = {
     backgroundColor: 'black',
     opacity: 0.35,
     width: 350,
+    borderRadius: 7,
+    marginBottom: 6
   }
 };
 
