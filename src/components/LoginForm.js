@@ -50,14 +50,19 @@ class LoginForm extends Component {
   //   </CardSection>
 
   render() {
-    const { linearGradientStyle, loginSubViewStyle, logoViewStyle, inputStyle } = styles;
+    const {
+      linearGradientStyle,
+      loginSubViewStyle,
+      logoViewStyle,
+      logoTextStyle,
+      inputStyle } = styles;
 
     return (
       <LinearGradient colors={['#ff0000', '#ff5050', '#cc3399']} style={linearGradientStyle}>
         <View style={loginSubViewStyle}>
 
             <View style={logoViewStyle}>
-              <Text>Circle</Text>
+              <Text style={logoTextStyle}>Circle</Text>
             </View>
 
             <CardSection>
@@ -93,19 +98,22 @@ class LoginForm extends Component {
 
 const styles = StyleSheet.create({
   linearGradientStyle: {
-    // backgroundColor: 'red',
     flex: 1,
     display: 'flex',
   },
   loginSubViewStyle: {
-    // backgroundColor: 'red',
     flex: 0.7,
     justifyContent: 'center',
     display: 'flex',
   },
   logoViewStyle: {
     alignSelf: 'center',
-    paddingBottom: 100
+    paddingBottom: 90
+  },
+  logoTextStyle: {
+    fontFamily: 'Pacifico-Regular',
+    fontSize: 32,
+    color: 'white'
   },
   // inputStyle: {
   // },
