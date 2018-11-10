@@ -1,24 +1,16 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
-  EMAIL_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGIN
+  LOGIN,
+  LOGIN_UPDATE
 } from './types';
 
-export const emailChanged = (email) => {
+export const loginUpdate = ({ field, value }) => {
   return {
-    type: EMAIL_CHANGED,
-    payload: email
-  };
-};
-
-export const passwordChanged = (password) => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: password
+    type: LOGIN_UPDATE,
+    payload: { field, value }
   };
 };
 

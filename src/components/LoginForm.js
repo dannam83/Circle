@@ -2,30 +2,81 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
+import { loginUser, loginUpdate } from '../actions';
 
 class LoginForm extends Component {
   state = { newAccount: false };
 
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
-  }
-
   onSignInPress() {
     const { email, password } = this.props;
-
     this.props.loginUser({ email, password });
   }
 
   onSignUpPress() {
-    const { email, password } = this.props;
+    const { firstName, lastName, phone, email, password } = this.props;
+    this.props.registerUser({ firstName, lastName, phone, email, password });
+  }
 
-    this.props.loginUser({ email, password });
+  renderEmailInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          placeholder="Email"
+          onChangeText={value => update({ field: 'email', value })}
+          value={this.props.email}
+        />
+      </LoginInputSection>
+    );
+  }
+
+  renderFirstNameInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          placeholder="Email"
+          onChangeText={value => update({ field: 'email', value })}
+          value={this.props.email}
+        />
+      </LoginInputSection>
+    );
+  }
+
+  renderLastNameInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          placeholder="Email"
+          onChangeText={value => update({ field: 'email', value })}
+          value={this.props.email}
+        />
+      </LoginInputSection>
+    );
+  }
+
+  renderPhoneInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          placeholder="Email"
+          onChangeText={value => update({ field: 'email', value })}
+          value={this.props.email}
+        />
+      </LoginInputSection>
+    );
+  }
+
+  renderPasswordInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          secureTextEntry
+          placeholder="Password"
+          onChangeText={value => update({ field: 'password', value })}
+          value={this.props.password}
+        />
+      </LoginInputSection>
+    );
   }
 
   renderLoginButton() {
@@ -34,7 +85,6 @@ class LoginForm extends Component {
         <Spinner size="large" />
       );
     }
-
     if (this.state.newAccount) {
       return (
         <LoginButton onPress={this.onSignUpPress.bind(this)}>
@@ -42,7 +92,6 @@ class LoginForm extends Component {
         </LoginButton>
       );
     }
-
     return (
       <LoginButton onPress={this.onSignInPress.bind(this)}>
         Sign In
@@ -52,14 +101,11 @@ class LoginForm extends Component {
 
   renderNewAccountText() {
     let message;
-
     if (this.state.newAccount) {
       message = 'Already have an account?';
     } else {
       message = 'Create a new account';
     }
-
-    // onPress={this.onNewAccountPress.bind(this)}
     return (
       <Text
         style={{ color: 'white' }}
@@ -89,9 +135,9 @@ class LoginForm extends Component {
       logoViewStyle,
       logoTextStyle,
       loginButtonSectionStyle,
-      loginContainerStyle,
       newAccountTextStyle
      } = styles;
+    const update = this.props.loginUpdate;
 
     return (
       <LinearGradient
@@ -104,27 +150,11 @@ class LoginForm extends Component {
               <Text style={logoTextStyle}>Circle</Text>
             </View>
 
-            <LoginInputSection>
-              <LoginInput
-                placeholder="Email"
-                placeholderTextColor="rgba(0, 0, 0, 0.35)"
-                onChangeText={this.onEmailChange.bind(this)}
-                value={this.props.email}
-                containerStyle={loginContainerStyle}
-              />
-            </LoginInputSection>
-
-            <LoginInputSection>
-              <LoginInput
-                secureTextEntry
-                placeholder="Password"
-                placeholderTextColor="rgba(0, 0, 0, 0.35)"
-                onChangeText={this.onPasswordChange.bind(this)}
-                value={this.props.password}
-                style={loginContainerStyle}
-              />
-            </LoginInputSection>
-
+            {this.renderFirstNameInput(update)}
+            {this.renderLastNameInput(update)}
+            {this.renderPhoneInput(update)}
+            {this.renderEmailInput(update)}
+            {this.renderPasswordInput(update)}
             {this.renderError()}
 
             <LoginInputSection style={loginButtonSectionStyle}>
@@ -134,7 +164,6 @@ class LoginForm extends Component {
             <LoginInputSection style={newAccountTextStyle}>
               {this.renderNewAccountText()}
             </LoginInputSection>
-
 
         </View>
       </LinearGradient>
@@ -181,13 +210,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
-
-  return { email, password, error, loading };
+  const { email, password, firstName, lastName, phone, error, loading } = auth;
+  return { email, password, firstName, lastName, phone, error, loading };
 };
 
 export default connect(mapStateToProps, {
-  emailChanged,
-  passwordChanged,
-  loginUser
+  loginUser,
+  loginUpdate
 })(LoginForm);

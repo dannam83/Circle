@@ -18,10 +18,10 @@ const LoginInput = ({
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
         autoCorrect={false}
-        style={[inputStyle, null]}
         value={value}
         onChangeText={onChangeText}
-        placeholderTextColor={placeholderTextColor}
+        placeholderTextColor="rgba(0, 0, 0, 0.35)"
+        style={[inputStyle, null]}
       />
     </View>
   );
