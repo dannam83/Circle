@@ -6,6 +6,8 @@ import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
 
 class LoginForm extends Component {
+  state = { newAccount: false };
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -14,7 +16,13 @@ class LoginForm extends Component {
     this.props.passwordChanged(text);
   }
 
-  onButtonPress() {
+  onSignInPress() {
+    const { email, password } = this.props;
+
+    this.props.loginUser({ email, password });
+  }
+
+  onSignUpPress() {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
@@ -27,17 +35,37 @@ class LoginForm extends Component {
       );
     }
 
+    if (this.state.newAccount) {
+      return (
+        <LoginButton onPress={this.onSignUpPress.bind(this)}>
+          Sign Up
+        </LoginButton>
+      );
+    }
+
     return (
-      <LoginButton onPress={this.onButtonPress.bind(this)}>
+      <LoginButton onPress={this.onSignInPress.bind(this)}>
         Sign In
       </LoginButton>
     );
   }
 
   renderNewAccountText() {
+    let message;
+
+    if (this.state.newAccount) {
+      message = 'Already have an account?';
+    } else {
+      message = 'Create a new account';
+    }
+
+    // onPress={this.onNewAccountPress.bind(this)}
     return (
-      <Text onPress={this.onButtonPress.bind(this)} style={{ color: 'white' }}>
-        Create a new account
+      <Text
+        style={{ color: 'white' }}
+        onPress={() => this.setState({ newAccount: !this.state.newAccount })}
+      >
+        {message}
       </Text>
     );
   }
