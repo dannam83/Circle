@@ -149,11 +149,15 @@ class LoginForm extends Component {
     const {
       linearGradientStyle,
       containerViewStyle,
-      logoViewStyle,
+      logoLoginViewStyle,
+      logoNewAccountViewStyle,
       logoTextStyle,
       loginButtonSectionStyle,
       newAccountTextStyle
      } = styles;
+    const logoViewStyle =
+      this.state.newAccount ? logoNewAccountViewStyle : logoLoginViewStyle
+    ;
     const update = this.props.loginUpdate;
 
     return (
@@ -192,14 +196,18 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   containerViewStyle: {
-    flex: 0.85,
+    flex: 0.90,
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
   },
-  logoViewStyle: {
+  logoLoginViewStyle: {
     alignSelf: 'center',
-    paddingBottom: 85
+    paddingBottom: 70
+  },
+  logoNewAccountViewStyle: {
+    alignSelf: 'center',
+    paddingBottom: 15
   },
   logoTextStyle: {
     fontFamily: 'Pacifico-Regular',
