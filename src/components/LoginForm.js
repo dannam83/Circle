@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
-import { loginUser, loginUpdate } from '../actions';
+import { loginUser, loginUpdate, loginReset } from '../actions';
 
 class LoginForm extends Component {
   state = { newAccount: false };
@@ -18,25 +18,13 @@ class LoginForm extends Component {
     this.props.registerUser({ firstName, lastName, phone, email, password });
   }
 
-  renderEmailInput(update) {
-    return (
-      <LoginInputSection>
-        <LoginInput
-          placeholder="Email"
-          onChangeText={value => update({ field: 'email', value })}
-          value={this.props.email}
-        />
-      </LoginInputSection>
-    );
-  }
-
   renderFirstNameInput(update) {
     return (
       <LoginInputSection>
         <LoginInput
-          placeholder="Email"
-          onChangeText={value => update({ field: 'email', value })}
-          value={this.props.email}
+          placeholder="First name"
+          onChangeText={value => update({ field: 'firstName', value })}
+          value={this.props.firstName}
         />
       </LoginInputSection>
     );
@@ -46,15 +34,39 @@ class LoginForm extends Component {
     return (
       <LoginInputSection>
         <LoginInput
-          placeholder="Email"
-          onChangeText={value => update({ field: 'email', value })}
-          value={this.props.email}
+          placeholder="Last name"
+          onChangeText={value => update({ field: 'lastName', value })}
+          value={this.props.lastName}
         />
       </LoginInputSection>
     );
   }
 
   renderPhoneInput(update) {
+    return (
+      <LoginInputSection>
+        <LoginInput
+          placeholder="Phone"
+          onChangeText={value => update({ field: 'phone', value })}
+          value={this.props.phone}
+        />
+      </LoginInputSection>
+    );
+  }
+
+  renderNewAccountFields(update) {
+    if (this.state.newAccount) {
+      return (
+        <View>
+          {this.renderFirstNameInput(update)}
+          {this.renderLastNameInput(update)}
+          {this.renderPhoneInput(update)}
+        </View>
+      );
+    }
+  }
+
+  renderEmailInput(update) {
     return (
       <LoginInputSection>
         <LoginInput
@@ -109,11 +121,16 @@ class LoginForm extends Component {
     return (
       <Text
         style={{ color: 'white' }}
-        onPress={() => this.setState({ newAccount: !this.state.newAccount })}
+        onPress={this.newAccountToggle.bind(this)}
       >
         {message}
       </Text>
     );
+  }
+
+  newAccountToggle() {
+    this.setState({ newAccount: !this.state.newAccount });
+    this.props.loginReset();
   }
 
   renderError() {
@@ -150,9 +167,7 @@ class LoginForm extends Component {
               <Text style={logoTextStyle}>Circle</Text>
             </View>
 
-            {this.renderFirstNameInput(update)}
-            {this.renderLastNameInput(update)}
-            {this.renderPhoneInput(update)}
+            {this.renderNewAccountFields(update)}
             {this.renderEmailInput(update)}
             {this.renderPasswordInput(update)}
             {this.renderError()}
@@ -216,5 +231,6 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
   loginUser,
-  loginUpdate
+  loginUpdate,
+  loginReset
 })(LoginForm);

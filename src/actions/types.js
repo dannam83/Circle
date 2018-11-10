@@ -1,4 +1,5 @@
 export const LOGIN_UPDATE = 'LOGIN_UPDATE';
+export const LOGIN_RESET = 'LOGIN_RESET';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGIN = 'LOGIN';

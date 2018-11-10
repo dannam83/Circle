@@ -4,13 +4,20 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGIN,
-  LOGIN_UPDATE
+  LOGIN_UPDATE,
+  LOGIN_RESET
 } from './types';
 
 export const loginUpdate = ({ field, value }) => {
   return {
     type: LOGIN_UPDATE,
     payload: { field, value }
+  };
+};
+
+export const loginReset = () => {
+  return {
+    type: LOGIN_RESET,
   };
 };
 
