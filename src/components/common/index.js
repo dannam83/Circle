@@ -6,5 +6,6 @@ export * from './Input';
 export * from './LoginInput';
 export * from './LoginInputSection';
 export * from './LoginButton';
+export * from './LoginNewAccountButton';
 export * from './Spinner';
 export * from './Confirm';

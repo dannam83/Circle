@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
+import { LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -20,7 +20,7 @@ class LoginForm extends Component {
     this.props.loginUser({ email, password });
   }
 
-  renderButton() {
+  renderLoginButton() {
     if (this.props.loading) {
       return (
         <Spinner size="large" />
@@ -31,6 +31,14 @@ class LoginForm extends Component {
       <LoginButton onPress={this.onButtonPress.bind(this)}>
         Sign In
       </LoginButton>
+    );
+  }
+
+  renderNewAccountText() {
+    return (
+      <Text onPress={this.onButtonPress.bind(this)} style={{ color: 'white' }}>
+        Create a new account
+      </Text>
     );
   }
 
@@ -45,9 +53,6 @@ class LoginForm extends Component {
       );
     }
   }
-  // <Card>
-  //   <CardSection style={logoStyle}>
-  //   </CardSection>
 
   render() {
     const {
@@ -56,8 +61,8 @@ class LoginForm extends Component {
       logoViewStyle,
       logoTextStyle,
       loginButtonSectionStyle,
-      // loginTextStyle,
-      loginContainerStyle
+      loginContainerStyle,
+      newAccountTextStyle
      } = styles;
 
     return (
@@ -95,14 +100,19 @@ class LoginForm extends Component {
             {this.renderError()}
 
             <LoginInputSection style={loginButtonSectionStyle}>
-              {this.renderButton()}
+              {this.renderLoginButton()}
             </LoginInputSection>
+
+            <LoginInputSection style={newAccountTextStyle}>
+              {this.renderNewAccountText()}
+            </LoginInputSection>
+
+
         </View>
       </LinearGradient>
     );
   }
 }
-// </Card>
 
 const styles = StyleSheet.create({
   linearGradientStyle: {
@@ -131,8 +141,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     paddingTop: 20
   },
-  loginContainerStyle: {
-    // backgroundColor: 'transparent'
+  newAccountTextStyle: {
+    justifyContent: 'center',
+    borderBottomWidth: 0,
   },
   errorTextStyle: {
     fontSize: 20,
