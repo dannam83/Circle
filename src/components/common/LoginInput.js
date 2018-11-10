@@ -6,19 +6,19 @@ const LoginInput = ({
   onChangeText,
   placeholder,
   secureTextEntry,
-  loginContainerStyle,
-  loginTextStyle,
+  // loginContainerStyle,
+  // loginTextStyle,
   placeholderTextColor
 }) => {
   const { inputStyle, viewStyle } = styles;
 
   return (
-    <View style={[viewStyle, loginContainerStyle]}>
+    <View style={[viewStyle, null]}>
       <TextInput
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
         autoCorrect={false}
-        style={[inputStyle, loginTextStyle]}
+        style={[inputStyle, null]}
         value={value}
         onChangeText={onChangeText}
         placeholderTextColor={placeholderTextColor}

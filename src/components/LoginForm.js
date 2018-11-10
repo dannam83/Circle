@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   containerViewStyle: {
-    flex: 0.7,
+    flex: 0.85,
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
