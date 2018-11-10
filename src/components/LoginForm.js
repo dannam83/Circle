@@ -55,7 +55,9 @@ class LoginForm extends Component {
       containerViewStyle,
       logoViewStyle,
       logoTextStyle,
-      loginButtonSectionStyle
+      loginButtonSectionStyle,
+      // loginTextStyle,
+      loginContainerStyle
      } = styles;
 
     return (
@@ -72,9 +74,10 @@ class LoginForm extends Component {
             <LoginInputSection>
               <LoginInput
                 placeholder="Email"
-                placeholderTextColor="white"
+                placeholderTextColor="rgba(0, 0, 0, 0.35)"
                 onChangeText={this.onEmailChange.bind(this)}
                 value={this.props.email}
+                containerStyle={loginContainerStyle}
               />
             </LoginInputSection>
 
@@ -82,9 +85,10 @@ class LoginForm extends Component {
               <LoginInput
                 secureTextEntry
                 placeholder="Password"
-                placeholderTextColor="white"
+                placeholderTextColor="rgba(0, 0, 0, 0.35)"
                 onChangeText={this.onPasswordChange.bind(this)}
                 value={this.props.password}
+                style={loginContainerStyle}
               />
             </LoginInputSection>
 
@@ -127,8 +131,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     paddingTop: 20
   },
-  // inputStyle: {
-  // },
+  loginContainerStyle: {
+    // backgroundColor: 'transparent'
+  },
   errorTextStyle: {
     fontSize: 20,
     alignSelf: 'center',
