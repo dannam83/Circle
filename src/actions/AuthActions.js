@@ -64,7 +64,7 @@ const loginSuccess = (dispatch, user) => {
     payload: user
   });
 
-  // Actions.main();
+  Actions.home();
 };
 
 const loginFail = (dispatch) => {

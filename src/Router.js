@@ -14,14 +14,15 @@ const RouterComponent = () => {
           <Scene key="login" component={LoginForm} hideNavBar />
         </Scene>
 
-        <Scene key="main">
+        <Scene key="home">
           <Scene
             rightTitle="Add"
             onRight={() => Actions.employeeCreate()}
             key="employeeList"
             component={EmployeeList}
-            title="Employees"
+            title="Circle"
             initial
+            titleStyle={{ fontFamily: 'Pacifico-Regular' }}
           />
           <Scene
             key="employeeCreate"
