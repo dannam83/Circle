@@ -3,9 +3,11 @@ import { Actions } from 'react-native-router-flux';
 import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGIN,
+  AUTHORIZING,
   LOGIN_UPDATE,
-  LOGIN_RESET
+  LOGIN_RESET,
+  CREATE_USER,
+  SAVE_FAIL
 } from './types';
 
 export const loginUpdate = ({ field, value }) => {
@@ -23,17 +25,35 @@ export const loginReset = () => {
 
 export const loginUser = ({ email, password }) => {
   return (dispatch) => {
-    dispatch({ type: LOGIN });
+    dispatch({ type: AUTHORIZING });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => loginSuccess(dispatch, user))
     .catch((error) => {
       console.log(error);
+      loginFail(dispatch);
+    });
+  };
+};
 
-      firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => loginSuccess(dispatch, user))
-      .catch(() => loginFail(dispatch));
-      });
+export const createUser = ({ firstName, lastName, phone, email, password }) => {
+  console.log('creating');
+  return (dispatch) => {
+    dispatch({ type: AUTHORIZING });
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user => {
+        loginSuccess(dispatch, user);
+      })
+      .catch(() => loginFail(dispatch))
+        .then(() => {
+          firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`)
+          .set({ firstName, lastName, email, phone });
+        })
+        .catch((error) => {
+          console.log(error);
+          saveFail(dispatch);
+        });
   };
 };
 
@@ -43,11 +63,17 @@ const loginSuccess = (dispatch, user) => {
     payload: user
   });
 
-  Actions.main();
+  // Actions.main();
 };
 
 const loginFail = (dispatch) => {
   dispatch({
     type: LOGIN_FAIL
+  });
+};
+
+const saveFail = (dispatch) => {
+  dispatch({
+    type: SAVE_FAIL
   });
 };

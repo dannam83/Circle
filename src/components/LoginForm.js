@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import { LoginInputSection, LoginInput, LoginButton, Spinner } from './common';
-import { loginUser, loginUpdate, loginReset } from '../actions';
+import { loginUser, loginUpdate, loginReset, createUser } from '../actions';
 
 class LoginForm extends Component {
   state = { newAccount: false };
@@ -15,7 +15,12 @@ class LoginForm extends Component {
 
   onSignUpPress() {
     const { firstName, lastName, phone, email, password } = this.props;
-    this.props.registerUser({ firstName, lastName, phone, email, password });
+    this.props.createUser({ firstName, lastName, phone, email, password });
+  }
+
+  newAccountToggle() {
+    this.setState({ newAccount: !this.state.newAccount });
+    this.props.loginReset();
   }
 
   renderFirstNameInput(update) {
@@ -128,11 +133,6 @@ class LoginForm extends Component {
     );
   }
 
-  newAccountToggle() {
-    this.setState({ newAccount: !this.state.newAccount });
-    this.props.loginReset();
-  }
-
   renderError() {
     if (this.props.error) {
       return (
@@ -240,5 +240,6 @@ const mapStateToProps = ({ auth }) => {
 export default connect(mapStateToProps, {
   loginUser,
   loginUpdate,
-  loginReset
+  loginReset,
+  createUser
 })(LoginForm);
