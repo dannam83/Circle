@@ -6,7 +6,6 @@ import {
   AUTHORIZING,
   LOGIN_UPDATE,
   LOGIN_RESET,
-  CREATE_USER,
   SAVE_FAIL
 } from './types';
 
@@ -37,7 +36,6 @@ export const loginUser = ({ email, password }) => {
 };
 
 export const createUser = ({ firstName, lastName, phone, email, password }) => {
-  console.log('creating');
   return (dispatch) => {
     dispatch({ type: AUTHORIZING });
 

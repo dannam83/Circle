@@ -3,7 +3,6 @@ export const LOGIN_RESET = 'LOGIN_RESET';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const AUTHORIZING = 'AUTHORIZING';
-export const CREATE_USER = 'CREATE_USER';
 export const SAVE_FAIL = 'SAVE_FAIL';
 
 export const EMPLOYEE_UPDATE = 'EMPLOYEE_UPDATE';

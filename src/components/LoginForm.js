@@ -166,7 +166,6 @@ class LoginForm extends Component {
         style={linearGradientStyle}
       >
         <View style={containerViewStyle}>
-
             <View style={logoViewStyle}>
               <Text style={logoTextStyle}>Circle</Text>
             </View>
@@ -183,7 +182,6 @@ class LoginForm extends Component {
             <LoginInputSection style={newAccountTextStyle}>
               {this.renderNewAccountText()}
             </LoginInputSection>
-
         </View>
       </LinearGradient>
     );

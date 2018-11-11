@@ -20,7 +20,6 @@ const styles = {
     width: 330,
     borderRadius: 7,
     marginBottom: 6,
-    // backgroundColor: 'rgba(0, 0, 0, 0.3)'
   }
 };
 
