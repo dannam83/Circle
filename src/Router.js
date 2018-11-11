@@ -22,7 +22,7 @@ const RouterComponent = () => {
             component={EmployeeList}
             title="Circle"
             initial
-            titleStyle={{ fontFamily: 'Pacifico-Regular' }}
+            titleStyle={{ fontFamily: 'Pacifico-Regular', fontSize: 20 }}
           />
           <Scene
             key="employeeCreate"
