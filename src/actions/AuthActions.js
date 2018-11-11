@@ -43,7 +43,10 @@ export const createUser = ({ firstName, lastName, phone, email, password }) => {
       .then(user => {
         loginSuccess(dispatch, user);
       })
-      .catch(() => loginFail(dispatch))
+      .catch((error) => {
+        console.log(error);
+        loginFail(dispatch);
+      })
         .then(() => {
           firebase.database().ref(`/users/${firebase.auth().currentUser.uid}`)
           .set({ firstName, lastName, email, phone });
