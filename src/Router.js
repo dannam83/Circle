@@ -16,18 +16,19 @@ const RouterComponent = () => {
 
         <Scene key="home">
           <Scene
-            rightTitle="Add"
-            onRight={() => Actions.employeeCreate()}
             key="employeeList"
             component={EmployeeList}
-            title="Circle"
             initial
-            titleStyle={{ fontFamily: 'Pacifico-Regular', fontSize: 20 }}
+            backTitle={null}
+            title="Circle"
+            titleStyle={{ fontFamily: 'Pacifico-Regular', fontSize: 25 }}
+            rightTitle="➕"
+            onRight={() => Actions.prayerRequest()}
           />
           <Scene
-            key="employeeCreate"
+            key="prayerRequest"
             component={EmployeeCreate}
-            title="Create Employee"
+            title="Prayer Request"
           />
           <Scene
             key="employeeEdit"
