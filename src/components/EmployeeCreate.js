@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from '../actions';
 import { Card, CardSection, Button } from './common';
@@ -12,14 +13,14 @@ class EmployeeCreate extends Component {
 
   render() {
     return (
-      <Card>
+      <View>
         <EmployeeForm {...this.props} />
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
             Create
           </Button>
         </CardSection>
-      </Card>
+      </View>
     );
   }
 }

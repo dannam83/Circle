@@ -2,7 +2,7 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
-import EmployeeCreate from './components/EmployeeCreate';
+import PostCreate from './components/PostCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 
 const RouterComponent = () => {
@@ -23,11 +23,11 @@ const RouterComponent = () => {
             title="Circle"
             titleStyle={styles.logoTitleStyle}
             rightTitle="➕"
-            onRight={() => Actions.prayerRequest()}
+            onRight={() => Actions.post()}
           />
           <Scene
-            key="prayerRequest"
-            component={EmployeeCreate}
+            key="post"
+            component={PostCreate}
             title="Post"
             titleStyle={{ color: 'white' }}
           />
