@@ -11,6 +11,8 @@ class PostForm extends Component {
         <TextInput
           placeholder="What would you like to share?"
           multiline
+          value={this.props.postText}
+          onChangeText={value => this.props.postUpdate({ value })}
         />
       </View>
     );
@@ -18,7 +20,7 @@ class PostForm extends Component {
 }
 
 const mapStateToProps = state => {
-  return { text: state.postForm.text };
+  return { postText: state.postForm.postText };
 };
 
-export default connect(null, { postUpdate })(PostForm);
+export default connect(mapStateToProps, { postUpdate })(PostForm);

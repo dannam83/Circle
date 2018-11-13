@@ -8,10 +8,10 @@ import {
   POST_DELETE
  } from './types';
 
-export const postUpdate = ({ prop, value }) => {
+export const postUpdate = ({ value }) => {
   return {
     type: POST_UPDATE,
-    payload: { prop, value }
+    payload: { value }
   };
 };
 

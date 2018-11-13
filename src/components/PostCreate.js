@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { View, KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-// import { employeeUpdate, employeeCreate } from '../actions';
 import { postUpdate, postCreate } from '../actions';
 import { Card, CardSection, Button } from './common';
-// import EmployeeForm from './EmployeeForm';
 import PostForm from './PostForm';
 
 class PostCreate extends Component {
@@ -13,11 +11,10 @@ class PostCreate extends Component {
     // this.props.postCreate({ name, phone, shift: shift || 'Monday' });
   }
 
-  // <PostForm {...this.props} />
   render() {
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
-        <PostForm></PostForm>
+        <PostForm {...this.props} />
       </KeyboardAvoidingView>
     );
   }
@@ -29,10 +26,10 @@ class PostCreate extends Component {
 // </CardSection>
 
 const mapStateToProps = (state) => {
-  const { name, phone, shift } = state.postForm;
-  return { name, phone, shift };
+  const { postType, postText } = state.postForm;
+  return { postType, postText };
 };
 
-export default connect(null, {
+export default connect(mapStateToProps, {
   postUpdate, postCreate
 })(PostCreate);
