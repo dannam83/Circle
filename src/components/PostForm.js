@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-// import { CardSection, Input } from './common';
 import { postUpdate } from '../actions';
 
 class PostForm extends Component {

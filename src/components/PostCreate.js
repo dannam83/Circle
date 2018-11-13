@@ -15,15 +15,15 @@ class PostCreate extends Component {
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <PostForm {...this.props} />
+        <CardSection>
+          <Button onPress={this.onButtonPress.bind(this)}>
+            Create
+          </Button>
+        </CardSection>
       </KeyboardAvoidingView>
     );
   }
 }
-// <CardSection>
-//   <Button onPress={this.onButtonPress.bind(this)}>
-//     Create
-//   </Button>
-// </CardSection>
 
 const mapStateToProps = (state) => {
   const { postType, postText } = state.postForm;
