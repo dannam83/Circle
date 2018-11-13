@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { postUpdate, postCreate } from '../actions';
-import { Card, CardSection, ButtonAsText } from './common';
+import { CardSection, ButtonAsText } from './common';
 import PostForm from './PostForm';
 
 class PostCreate extends Component {
   onButtonPress() {
-    // const { name, phone, shift } = this.props;
-    // this.props.postCreate({ name, phone, shift: shift || 'Monday' });
+    const { postText } = this.props;
+    this.props.postCreate({ postText });
   }
 
   render() {

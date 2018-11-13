@@ -11,16 +11,15 @@ import {
 export const postUpdate = ({ value }) => {
   return {
     type: POST_UPDATE,
-    payload: { value }
+    payload: value
   };
 };
 
-export const postCreate = ({ name, phone, shift }) => {
+export const postCreate = ({ postText }) => {
   const { currentUser } = firebase.auth();
-
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/posts`)
-    .push({ name, phone, shift })
+    .push({ postText })
     .then(() => {
       dispatch({ type: POST_CREATE });
       Actions.pop();
