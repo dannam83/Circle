@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { postUpdate, postCreate } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { Card, CardSection, ButtonAsText } from './common';
 import PostForm from './PostForm';
 
 class PostCreate extends Component {
@@ -15,10 +15,10 @@ class PostCreate extends Component {
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <PostForm {...this.props} />
-        <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>
-            Create
-          </Button>
+        <CardSection style={{ justifyContent: 'center', borderTopWidth: 1 }}>
+          <ButtonAsText onPress={this.onButtonPress.bind(this)}>
+            Share
+          </ButtonAsText>
         </CardSection>
       </KeyboardAvoidingView>
     );
