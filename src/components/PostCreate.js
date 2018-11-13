@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 // import { employeeUpdate, employeeCreate } from '../actions';
 import { postUpdate, postCreate } from '../actions';
@@ -16,9 +16,9 @@ class PostCreate extends Component {
   // <PostForm {...this.props} />
   render() {
     return (
-      <View>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <PostForm></PostForm>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

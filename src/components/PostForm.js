@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Picker } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 // import { CardSection, Input } from './common';
 import { postUpdate } from '../actions';
@@ -7,24 +7,18 @@ import { postUpdate } from '../actions';
 class PostForm extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: 'white' }}>
-        <Text>hi</Text>
+      <View style={{ backgroundColor: 'white', padding: 10, flex: 1 }}>
+        <TextInput
+          placeholder="What would you like to share?"
+          multiline
+        />
       </View>
     );
   }
 }
 
-// const styles = {
-//   pickerTextStyle: {
-//     fontSize: 18,
-//     paddingLeft: 20
-//   }
-// };
-
 const mapStateToProps = state => {
-  const { name, phone, shift } = state.postForm;
-
-  return { name, phone, shift };
+  return { text: state.postForm.text };
 };
 
 export default connect(null, { postUpdate })(PostForm);
