@@ -7,7 +7,7 @@ import EmployeeEdit from './components/EmployeeEdit';
 
 const RouterComponent = () => {
   return (
-    <Router>
+    <Router navigationBarStyle={{ backgroundColor: '#ff1c1c' }}>
       <Scene key="root" hideNavBar>
 
         <Scene key="auth" initial>
@@ -21,14 +21,15 @@ const RouterComponent = () => {
             initial
             backTitle={null}
             title="Circle"
-            titleStyle={{ fontFamily: 'Pacifico-Regular', fontSize: 25 }}
+            titleStyle={styles.logoTitleStyle}
             rightTitle="➕"
             onRight={() => Actions.prayerRequest()}
           />
           <Scene
             key="prayerRequest"
             component={EmployeeCreate}
-            title="Prayer Request"
+            title="Post"
+            titleStyle={{ color: 'white' }}
           />
           <Scene
             key="employeeEdit"
@@ -40,6 +41,14 @@ const RouterComponent = () => {
       </Scene>
     </Router>
   );
+};
+
+const styles = {
+  logoTitleStyle: {
+    fontFamily: 'Pacifico-Regular',
+    fontSize: 25,
+    color: 'white'
+  }
 };
 
 export default RouterComponent;
