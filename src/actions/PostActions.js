@@ -8,10 +8,10 @@ import {
   POST_DELETE
  } from './types';
 
-export const postUpdate = ({ value }) => {
+export const postUpdate = ({ prop, value }) => {
   return {
     type: POST_UPDATE,
-    payload: value
+    payload: { prop, value }
   };
 };
 
@@ -38,11 +38,11 @@ export const postsFetch = () => {
   };
 };
 
-export const postSave = ({ name, phone, shift, uid }) => {
+export const postSave = ({ name, phone, shift, id }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
+    firebase.database().ref(`/users/${currentUser.uid}/posts/${id}`)
       .set({ name, phone, shift })
       .then(() => {
         dispatch({ type: POST_SAVE_SUCCESS });
@@ -51,11 +51,11 @@ export const postSave = ({ name, phone, shift, uid }) => {
   };
 };
 
-export const postDelete = ({ uid }) => {
+export const postDelete = ({ id }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
+    firebase.database().ref(`/users/${currentUser.uid}/posts/${id}`)
       .remove()
       .then(() => {
         dispatch({ type: POST_DELETE });

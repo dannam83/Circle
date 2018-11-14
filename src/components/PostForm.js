@@ -17,7 +17,7 @@ class PostForm extends Component {
           autofocus
           ref={(input) => { this.textInput = input; }}
           value={this.props.postText}
-          onChangeText={value => this.props.postUpdate({ value })}
+          onChangeText={value => this.props.postUpdate({ prop: 'postText', value })}
         />
       </View>
     );

@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import PostList from './components/PostList';
 import PostCreate from './components/PostCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import PostEdit from './components/PostEdit';
 
 const RouterComponent = () => {
   return (
@@ -33,9 +34,9 @@ const RouterComponent = () => {
             titleStyle={{ color: 'white' }}
           />
           <Scene
-            key="employeeEdit"
-            component={EmployeeEdit}
-            title="Edit Employee"
+            key="postEdit"
+            component={PostEdit}
+            title="Edit Post"
           />
         </Scene>
 
