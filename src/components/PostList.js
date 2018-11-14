@@ -19,12 +19,12 @@ class PostList extends Component {
     this.createDataSource(nextProps);
   }
 
-  createDataSource({ employees }) {
+  createDataSource({ posts }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
 
-    this.dataSource = ds.cloneWithRows(employees);
+    this.dataSource = ds.cloneWithRows(posts);
   }
 
   renderRow(post) {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
-import EmployeeList from './components/EmployeeList';
+// import EmployeeList from './components/EmployeeList';
+import PostList from './components/PostList';
 import PostCreate from './components/PostCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 
@@ -16,8 +17,8 @@ const RouterComponent = () => {
 
         <Scene key="home">
           <Scene
-            key="employeeList"
-            component={EmployeeList}
+            key="postList"
+            component={PostList}
             initial
             backTitle={null}
             title="Circle"
