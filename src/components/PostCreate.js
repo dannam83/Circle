@@ -27,7 +27,7 @@ class PostCreate extends Component {
 
 const mapStateToProps = (state) => {
   const { postType, postText } = state.postForm;
-  return { postType, postText };
+  return { postType, postText, scene: 'create' };
 };
 
 export default connect(mapStateToProps, {

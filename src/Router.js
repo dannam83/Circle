@@ -37,6 +37,7 @@ const RouterComponent = () => {
             key="postEdit"
             component={PostEdit}
             title="Edit Post"
+            titleStyle={{ color: 'white' }}
           />
         </Scene>
 

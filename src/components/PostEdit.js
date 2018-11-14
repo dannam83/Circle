@@ -5,7 +5,7 @@ import { View, KeyboardAvoidingView } from 'react-native';
 // import { text } from 'react-native-communications';
 import PostForm from './PostForm';
 // import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
-import { postUpdate, postSave, postDelete } from '../actions';
+import { postEditUpdate, postSave, postDelete } from '../actions';
 import { Card, CardSection, ButtonAsText, Confirm } from './common';
 
 class PostEdit extends Component {
@@ -13,7 +13,7 @@ class PostEdit extends Component {
 
   componentWillMount() {
     _.each(this.props.post, (value, prop) => {
-      this.props.postUpdate({ prop, value });
+      this.props.postEditUpdate({ prop, value });
     });
   }
 
@@ -37,7 +37,7 @@ class PostEdit extends Component {
         <PostForm {...this.props} />
         <CardSection style={{ justifyContent: 'center', borderTopWidth: 1 }}>
           <ButtonAsText onPress={this.onButtonPress.bind(this)}>
-            Update
+            Save
           </ButtonAsText>
         </CardSection>
       </KeyboardAvoidingView>
@@ -55,11 +55,11 @@ class PostEdit extends Component {
 // </View>
 
 const mapStateToProps = state => {
-  const { postText, postType } = state.postForm;
+  const { postText, postType } = state.postEdit;
 
   return { postText, postType };
 };
 
 export default connect(mapStateToProps, {
-  postUpdate, postSave, postDelete
+  postEditUpdate, postSave, postDelete
 })(PostEdit);
