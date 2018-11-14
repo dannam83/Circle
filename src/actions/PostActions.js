@@ -35,25 +35,15 @@ export const postEditUpdate = ({ prop, value }) => {
   };
 };
 
-export const postsFetch = () => {
-  const { currentUser } = firebase.auth();
-
-  return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/posts`)
-      .on('value', snapshot => {
-        dispatch({ type: POSTS_FETCH_SUCCESS, payload: snapshot.val() });
-      });
-  };
-};
-
 export const postEditSave = ({ postText, uid }) => {
   const { currentUser } = firebase.auth();
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
       .set({ postText })
       .then(() => {
-        Actions.postList({ type: 'reset' });
+        dispatch({ type: POST_SAVE_SUCCESS });
+        Actions.employeeList({ type: 'reset' });
       });
   };
 };
@@ -68,5 +58,16 @@ export const postDelete = ({ uid }) => {
         dispatch({ type: POST_DELETE });
         Actions.postList({ type: 'reset' });
     });
+  };
+};
+
+export const postsFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/posts`)
+      .on('value', snapshot => {
+        dispatch({ type: POSTS_FETCH_SUCCESS, payload: snapshot.val() });
+      });
   };
 };
