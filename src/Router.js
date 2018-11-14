@@ -30,7 +30,7 @@ const RouterComponent = () => {
           <Scene
             key="post"
             component={PostCreate}
-            title="Post"
+            title="New Post"
             titleStyle={{ color: 'white' }}
           />
           <Scene

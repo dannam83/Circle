@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { postCreateUpdate, postCreate } from '../actions';
+import { postCreateUpdate, postCreateSave } from '../actions';
 import { CardSection, ButtonAsText } from './common';
 import PostForm from './PostForm';
 
 class PostCreate extends Component {
   onButtonPress() {
     const { postText } = this.props;
-    this.props.postCreate({ postText });
+    this.props.postCreateSave({ postText });
   }
 
   render() {
@@ -31,5 +31,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  postCreateUpdate, postCreate
+  postCreateUpdate, postCreateSave
 })(PostCreate);
