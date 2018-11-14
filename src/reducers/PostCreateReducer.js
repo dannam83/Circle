@@ -1,5 +1,5 @@
 import {
-  POST_UPDATE,
+  POST_CREATE_UPDATE,
   POST_CREATE,
   POST_SAVE_SUCCESS,
   POST_DELETE
@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case POST_UPDATE:
+    case POST_CREATE_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };
     case POST_CREATE:
       return INITIAL_STATE;

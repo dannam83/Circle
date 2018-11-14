@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
-import { postUpdate, postCreate } from '../actions';
+import { postCreateUpdate, postCreate } from '../actions';
 import { CardSection, ButtonAsText } from './common';
 import PostForm from './PostForm';
 
@@ -26,10 +26,10 @@ class PostCreate extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { postType, postText } = state.postForm;
-  return { postType, postText, scene: 'create' };
+  const { postType, postText } = state.postCreate;
+  return { postType, postText };
 };
 
 export default connect(mapStateToProps, {
-  postUpdate, postCreate
+  postCreateUpdate, postCreate
 })(PostCreate);

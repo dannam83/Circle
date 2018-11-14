@@ -1,16 +1,16 @@
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
-  POST_UPDATE,
+  POST_CREATE_UPDATE,
   POST_CREATE,
   POSTS_FETCH_SUCCESS,
   POST_SAVE_SUCCESS,
   POST_DELETE
  } from './types';
 
-export const postUpdate = ({ prop, value }) => {
+export const postCreateUpdate = ({ prop, value }) => {
   return {
-    type: POST_UPDATE,
+    type: POST_CREATE_UPDATE,
     payload: { prop, value }
   };
 };

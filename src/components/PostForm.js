@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { postUpdate, postEditUpdate } from '../actions';
+import { postCreateUpdate, postEditUpdate } from '../actions';
 
 class PostForm extends Component {
   componentDidMount() {
@@ -12,14 +12,14 @@ class PostForm extends Component {
     if (this.props.routeName === 'postEdit') {
       return this.props.postEditText;
     }
-    return this.props.postText;
+    return this.props.postCreateText;
   }
 
   getOnChangeText() {
     if (this.props.routeName === 'postEdit') {
       return this.props.postEditUpdate;
     }
-    return this.props.postUpdate;
+    return this.props.postCreateUpdate;
   }
 
   render() {
@@ -42,9 +42,11 @@ class PostForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    postEditText: state.postEdit.postText
-
+    postEditText: state.postEdit.postText,
+    postCreateText: state.postCreate.postText
   };
 };
 
-export default connect(mapStateToProps, { postUpdate, postEditUpdate })(PostForm);
+export default connect(mapStateToProps, {
+  postCreateUpdate, postEditUpdate
+})(PostForm);
