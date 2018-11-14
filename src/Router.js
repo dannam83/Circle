@@ -4,7 +4,7 @@ import LoginForm from './components/LoginForm';
 // import EmployeeList from './components/EmployeeList';
 import PostList from './components/PostList';
 import PostCreate from './components/PostCreate';
-import EmployeeEdit from './components/EmployeeEdit';
+// import EmployeeEdit from './components/EmployeeEdit';
 import PostEdit from './components/PostEdit';
 
 const RouterComponent = () => {

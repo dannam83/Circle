@@ -38,12 +38,12 @@ export const postsFetch = () => {
   };
 };
 
-export const postSave = ({ name, phone, shift, id }) => {
+export const postSave = ({ postText, uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/posts/${id}`)
-      .set({ name, phone, shift })
+    firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
+      .set({ postText })
       .then(() => {
         dispatch({ type: POST_SAVE_SUCCESS });
         Actions.postList({ type: 'reset' });
@@ -51,11 +51,11 @@ export const postSave = ({ name, phone, shift, id }) => {
   };
 };
 
-export const postDelete = ({ id }) => {
+export const postDelete = ({ uid }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/posts/${id}`)
+    firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
       .remove()
       .then(() => {
         dispatch({ type: POST_DELETE });

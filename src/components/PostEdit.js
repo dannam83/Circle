@@ -1,10 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, KeyboardAvoidingView } from 'react-native';
-// import { text } from 'react-native-communications';
+import { KeyboardAvoidingView } from 'react-native';
 import PostForm from './PostForm';
-// import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import { postEditUpdate, postSave, postDelete } from '../actions';
 import { Card, CardSection, ButtonAsText, Confirm } from './common';
 
@@ -19,12 +17,11 @@ class PostEdit extends Component {
 
   onButtonPress() {
     const { postText } = this.props;
-
-    this.props.postSave({ postText, uid: this.props.post.id });
+    this.props.postSave({ postText, uid: this.props.post.uid });
   }
 
   onAccept() {
-    this.props.postDelete({ uid: this.props.post.id });
+    this.props.postDelete({ uid: this.props.post.uid });
   }
 
   onDecline() {

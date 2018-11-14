@@ -1,10 +1,10 @@
-// import firebase from 'firebase';
-// import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import {
   POST_EDIT_UPDATE,
   // POST_CREATE,
   // POSTS_FETCH_SUCCESS,
-  // POST_SAVE_SUCCESS,
+  POST_SAVE_SUCCESS,
   // POST_DELETE
  } from './types';
 
@@ -38,12 +38,12 @@ export const postEditUpdate = ({ prop, value }) => {
 //   };
 // };
 //
-// export const postSave = ({ name, phone, shift, id }) => {
+// export const postSave = ({ postText, id }) => {
 //   const { currentUser } = firebase.auth();
 //
 //   return (dispatch) => {
 //     firebase.database().ref(`/users/${currentUser.uid}/posts/${id}`)
-//       .set({ name, phone, shift })
+//       .set({ postText })
 //       .then(() => {
 //         dispatch({ type: POST_SAVE_SUCCESS });
 //         Actions.postList({ type: 'reset' });
