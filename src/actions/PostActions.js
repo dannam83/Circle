@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
   POST_CREATE_UPDATE,
   POST_CREATE_SAVE,
+  POST_EDIT_UPDATE,
   POSTS_FETCH_SUCCESS,
   POST_SAVE_SUCCESS,
   POST_DELETE
@@ -27,6 +28,13 @@ export const postCreateSave = ({ postText }) => {
   };
 };
 
+export const postEditUpdate = ({ prop, value }) => {
+  return {
+    type: POST_EDIT_UPDATE,
+    payload: { prop, value }
+  };
+};
+
 export const postsFetch = () => {
   const { currentUser } = firebase.auth();
 
@@ -38,14 +46,13 @@ export const postsFetch = () => {
   };
 };
 
-export const postSave = ({ postText, uid }) => {
+export const postEditSave = ({ postText, uid }) => {
   const { currentUser } = firebase.auth();
 
-  return (dispatch) => {
+  return () => {
     firebase.database().ref(`/users/${currentUser.uid}/posts/${uid}`)
       .set({ postText })
       .then(() => {
-        dispatch({ type: POST_SAVE_SUCCESS });
         Actions.postList({ type: 'reset' });
       });
   };

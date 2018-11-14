@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { KeyboardAvoidingView } from 'react-native';
 import PostForm from './PostForm';
-import { postEditUpdate, postSave, postDelete } from '../actions';
+import { postEditUpdate, postEditSave, postDelete } from '../actions';
 import { Card, CardSection, ButtonAsText, Confirm } from './common';
 
 class PostEdit extends Component {
@@ -17,7 +17,7 @@ class PostEdit extends Component {
 
   onButtonPress() {
     const { postText } = this.props;
-    this.props.postSave({ postText, uid: this.props.post.uid });
+    this.props.postEditSave({ postText, uid: this.props.post.uid });
   }
 
   onAccept() {
@@ -58,5 +58,5 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  postEditUpdate, postSave, postDelete
+  postEditUpdate, postEditSave, postDelete
 })(PostEdit);
