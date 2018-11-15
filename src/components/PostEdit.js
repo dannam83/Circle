@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView, View } from 'react-native';
+import { KeyboardAvoidingView, Keyboard } from 'react-native';
 import PostForm from './PostForm';
 import { postEditUpdate, postEditSave, postDelete } from '../actions';
-import { Card, CardSection, ButtonAsText, Confirm } from './common';
+import { CardSection, ButtonAsText, Confirm } from './common';
 
 class PostEdit extends Component {
   state = { showModal: false }
@@ -28,27 +28,18 @@ class PostEdit extends Component {
     this.setState({ showModal: false });
   }
 
+  showModal() {
+    Keyboard.dismiss();
+    return (() => this.setState({ showModal: true }));
+  }
+
   render() {
-    if (this.state.showModal) {
-      return (
-        <View style={{ flex: 1 }}>
-          <PostForm {...this.props} />
-          <Confirm
-            visible={this.state.showModal}
-            onAccept={this.onAccept.bind(this)}
-            onDecline={this.onDecline.bind(this)}
-          >
-            Are you sure you want to delete this post?
-          </Confirm>
-        </View>
-      );
-    }
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <PostForm {...this.props} />
         <CardSection style={{ justifyContent: 'space-around', borderTopWidth: 1 }}>
           <ButtonAsText
-            onPress={() => this.setState({ showModal: true })}
+            onPress={this.showModal()}
           >
             Delete
           </ButtonAsText>
@@ -59,6 +50,13 @@ class PostEdit extends Component {
             Save
           </ButtonAsText>
         </CardSection>
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure you want to delete this post?
+        </Confirm>
       </KeyboardAvoidingView>
     );
   }
@@ -66,7 +64,6 @@ class PostEdit extends Component {
 
 const mapStateToProps = state => {
   const { postText, postType } = state.postEdit;
-
   return { postText, postType };
 };
 
