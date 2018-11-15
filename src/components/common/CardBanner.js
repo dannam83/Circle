@@ -10,19 +10,21 @@ const CardBanner = ({ post }) => {
   // } = post;
 
   const {
+    containerStyle,
     // thumbnailStyle,
     headerContentStyle,
     // thumbnailContainerStyle,
-    headerTextStyle,
+    headerAuthorStyle,
+    headerDetailStyle
   } = styles;
 
   return (
-    <CardSection>
+    <View style={containerStyle}>
       <View style={headerContentStyle}>
-      <Text style={headerTextStyle}>author</Text>
-      <Text>postType</Text>
+        <Text style={headerAuthorStyle}>author</Text>
+        <Text style={headerDetailStyle}>postType</Text>
       </View>
-    </CardSection>
+    </View>
 
   );
 };
@@ -33,12 +35,25 @@ const CardBanner = ({ post }) => {
 // />
 
 const styles = {
+  containerStyle: {
+    paddingHorizontal: 10,
+    paddingTop: 10,
+    paddingBottom: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    position: 'relative'
+  },
   headerContentStyle: {
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
-  headerTextStyle: {
-    fontSize: 18
+  headerAuthorStyle: {
+    fontWeight: 'bold',
+  },
+  headerDetailStyle: {
+    fontSize: 11.5,
+    fontWeight: '100'
   },
   thumbnailStyle: {
     height: 50,
