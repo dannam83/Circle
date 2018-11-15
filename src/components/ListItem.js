@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { CardSection } from './common';
+import { CardSection, CardBanner } from './common';
 
 class ListItem extends Component {
   onRowPress() {
@@ -14,6 +14,7 @@ class ListItem extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
+          <CardBanner></CardBanner>
           <CardSection>
             <Text>
               {postText}
