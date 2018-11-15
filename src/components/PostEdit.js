@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAvoidingView, View } from 'react-native';
 import PostForm from './PostForm';
 import { postEditUpdate, postEditSave, postDelete } from '../actions';
 import { Card, CardSection, ButtonAsText, Confirm } from './common';
@@ -29,27 +29,40 @@ class PostEdit extends Component {
   }
 
   render() {
+    if (this.state.showModal) {
+      return (
+        <View style={{ flex: 1 }}>
+          <PostForm {...this.props} />
+          <Confirm
+            visible={this.state.showModal}
+            onAccept={this.onAccept.bind(this)}
+            onDecline={this.onDecline.bind(this)}
+          >
+            Are you sure you want to delete this post?
+          </Confirm>
+        </View>
+      );
+    }
     return (
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
         <PostForm {...this.props} />
-        <CardSection style={{ justifyContent: 'center', borderTopWidth: 1 }}>
-          <ButtonAsText onPress={this.onButtonPress.bind(this)}>
-            Save Changes
+        <CardSection style={{ justifyContent: 'space-around', borderTopWidth: 1 }}>
+          <ButtonAsText
+            onPress={() => this.setState({ showModal: true })}
+          >
+            Delete
+          </ButtonAsText>
+          <ButtonAsText
+            onPress={this.onButtonPress.bind(this)}
+            style={{ borderLeft: 1, borderColor: '#ddd' }}
+          >
+            Save
           </ButtonAsText>
         </CardSection>
       </KeyboardAvoidingView>
     );
   }
 }
-// <View style={{ flex: 1 }}>
-//   <Confirm
-//     visible={this.state.showModal}
-//     onAccept={this.onAccept.bind(this)}
-//     onDecline={this.onDecline.bind(this)}
-//     >
-//     Are you sure you want to delete this post?
-//   </Confirm>
-// </View>
 
 const mapStateToProps = state => {
   const { postText, postType } = state.postEdit;
