@@ -34,7 +34,7 @@ class PostEdit extends Component {
         <PostForm {...this.props} />
         <CardSection style={{ justifyContent: 'center', borderTopWidth: 1 }}>
           <ButtonAsText onPress={this.onButtonPress.bind(this)}>
-            Save
+            Save Changes
           </ButtonAsText>
         </CardSection>
       </KeyboardAvoidingView>

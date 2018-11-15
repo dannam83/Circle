@@ -15,7 +15,7 @@ class ListItem extends Component {
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
           <CardSection>
-            <Text style={styles.titleStyle}>
+            <Text>
               {postText}
             </Text>
           </CardSection>
@@ -24,12 +24,5 @@ class ListItem extends Component {
     );
   }
 }
-
-const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
-  }
-};
 
 export default ListItem;
