@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { KeyboardAvoidingView, Keyboard } from 'react-native';
+import { KeyboardAvoidingView } from 'react-native';
 import PostForm from './PostForm';
 import { postEditUpdate, postEditSave, postDelete } from '../actions';
 import { CardSection, ButtonAsText, Confirm } from './common';
@@ -28,8 +28,7 @@ class PostEdit extends Component {
     this.setState({ showModal: false });
   }
 
-  showModal() {
-    Keyboard.dismiss();
+  showConfirmModal() {
     return (() => this.setState({ showModal: true }));
   }
 
@@ -39,7 +38,7 @@ class PostEdit extends Component {
         <PostForm {...this.props} />
         <CardSection style={{ justifyContent: 'space-around', borderTopWidth: 1 }}>
           <ButtonAsText
-            onPress={this.showModal()}
+            onPress={this.showConfirmModal()}
           >
             Delete
           </ButtonAsText>
@@ -55,7 +54,7 @@ class PostEdit extends Component {
           onAccept={this.onAccept.bind(this)}
           onDecline={this.onDecline.bind(this)}
         >
-          Are you sure you want to delete this post?
+          Are you sure? Once it's gone, it's gone forever.
         </Confirm>
       </KeyboardAvoidingView>
     );
