@@ -14,7 +14,7 @@ class ListItem extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
         <View>
-          <CardBanner></CardBanner>
+          <CardBanner />
           <CardSection>
             <Text>
               {postText}

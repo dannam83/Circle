@@ -43,7 +43,7 @@ export const postEditSave = ({ postText, uid }) => {
       .set({ postText })
       .then(() => {
         dispatch({ type: POST_SAVE_SUCCESS });
-        Actions.employeeList({ type: 'reset' });
+        Actions.postList({ type: 'reset' });
       });
   };
 };
